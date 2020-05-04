@@ -1,5 +1,6 @@
 buildscript {
 	repositories {
+		maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
 		maven { url 'https://repo.spring.io/plugins-release' }
 	}
 	dependencies {
@@ -71,17 +72,17 @@ configure(allprojects.findAll { (it.name != "framework-bom") } ) { project ->
 		}
 	}
 
-	configurations.all {
-		// Check for updates every build
-		resolutionStrategy.cacheChangingModulesFor 0, "seconds"
-
-		// Consistent slf4j version (e.g. clashes between slf4j versions)
-		resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-			if (details.requested.group == "org.slf4j") {
-				details.useVersion slf4jVersion
-			}
-		}
-	}
+//	configurations.all {
+//		// Check for updates every build
+//		resolutionStrategy.cacheChangingModulesFor 0, "seconds"
+//
+//		// Consistent slf4j version (e.g. clashes between slf4j versions)
+//		resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+//			if (details.requested.group == "org.slf4j") {
+//				details.useVersion slf4jVersion
+//			}
+//		}
+//	}
 
 	pluginManager.withPlugin("kotlin") {
 		apply plugin: "org.jetbrains.dokka"
